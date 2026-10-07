@@ -12,7 +12,7 @@ AI-powered cosmetic skin analysis web app using the YouCam API for skin scores, 
 
 ## 🎞️ Website Preview
 
-<img width="960" height="459" alt="MedicalSkin AI Demo" src="https://github.com/user-attachments/assets/f037809c-ba33-4371-9648-3325a22b41bf" />
+<img width="960" height="459" alt="MedicalSkin AI Demo" src="https://github.com/user-attachments/assets/c12021f6-5a48-4bb6-a610-04ce1695f982" />
 
 ## ✨ Features
 

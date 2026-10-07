@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>MedicalSkin AI | Skin Analysis</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css', v='4') }}">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header id="siteHeader">
+    <a href="#" class="brand">
+        <span class="brandicon"><i>✦</i></span>
+        MedicalSkin <b>AI</b>
+    </a>
+
+    <nav>
+        <a href="#analyze">Analyze</a>
+        <a href="#results">Results</a>
+        <a href="#visualization">Visualization</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-glow" aria-hidden="true">
+            <div class="blob b1"></div>
+            <div class="blob b2"></div>
+            <div class="blob b3"></div>
+        </div>
+
+        <div class="eyebrow">
+            YOUCAM-POWERED SKIN INTELLIGENCE
+        </div>
+
+        <h1>
+            Get to know your skin.<br>
+            <em>Glow with clarity.</em>
+        </h1>
+
+        <p>
+            Analyze your facial skin with AI,
+            explore skin concerns, and track your progress.
+        </p>
+
+        <a href="#analyze" class="cta">
+            Start Skin Analysis →
+        </a>
+
+    </section>
+
+
+    <!-- IMAGE UPLOAD -->
+    <section class="panel upload reveal" id="analyze">
+
+        <div>
+
+            <div class="eyebrow">01 / YOUR PHOTO</div>
+
+            <h2>Start with a clear selfie</h2>
+
+            <p>
+                Upload a front-facing facial photograph.
+                Use even lighting and keep your face
+                larger than 60% of the image width.
+            </p>
+
+            <form id="form">
+
+                <label class="drop" for="image" id="dropZone">
+
+                    <span class="dropicon">⬆</span>
+
+                    <strong>Choose or drop your photo</strong>
+
+                    <small>
+                        JPEG / PNG · Maximum 8 MB
+                    </small>
+
+                    <input
+                        id="image"
+                        name="image"
+                        type="file"
+                        accept="image/jpeg,image/png"
+                    >
+
+                </label>
+
+                <div class="actions">
+
+                    <button type="submit" id="submit">
+                        Analyze My Skin →
+                    </button>
+
+                    <button type="button" id="demo" class="ghost">
+                        Try Demo
+                    </button>
+
+                </div>
+
+                <p id="message"
+                   role="status"
+                   aria-live="polite"></p>
+
+            </form>
+
+        </div>
+
+        <div class="preview" id="preview">
+            <div class="preview-icon">◌</div>
+            <span>Your photo appears here</span>
+        </div>
+
+    </section>
+
+
+    <!-- ANALYSIS RESULTS -->
+    <section id="results" class="hidden">
+
+        <div class="heading">
+
+            <div>
+                <div class="eyebrow">
+                    02 / YOUR RESULTS
+                </div>
+
+                <h2>Skin Analysis Results</h2>
+            </div>
+
+            <span class="pill" id="mode">
+                Live Analysis
+            </span>
+
+        </div>
+
+        <!-- OVERALL STATISTICS -->
+        <div class="statgrid">
+
+            <article class="stat dark">
+                <span>OVERALL SKIN SCORE</span>
+                <strong id="overall">—</strong>
+                <small>Cosmetic assessment score</small>
+            </article>
+
+            <article class="stat">
+                <span>SKIN TYPE</span>
+                <strong id="skinType">—</strong>
+                <small>AI skin classification</small>
+            </article>
+
+            <article class="stat">
+                <span>ESTIMATED SKIN AGE</span>
+                <strong id="age">—</strong>
+                <small>AI-generated estimate</small>
+            </article>
+
+        </div>
+
+
+        <!-- SKIN SCORES -->
+        <section class="panel scorepanel reveal">
+
+            <div>
+
+                <h3>Skin Concern Breakdown</h3>
+
+                <p>
+                    Explore the skin scores returned
+                    by YouCam AI. Higher scores mean
+                    the concern is less visible.
+                </p>
+
+                <div class="legend">
+                    <span class="l-good">80+ Good</span>
+                    <span class="l-fair">60–79 Fair</span>
+                    <span class="l-low">&lt;60 Needs care</span>
+                </div>
+
+            </div>
+
+            <div id="scoreRows" class="scores"></div>
+
+        </section>
+
+
+        <!-- AI VISUALIZATION -->
+        <section class="panel reveal" id="visualization">
+
+            <div class="eyebrow">
+                03 / AI VISUALIZATION
+            </div>
+
+            <h2>Explore Your Skin</h2>
+
+            <p>
+                Select a skin concern to view its
+                AI-generated analysis image.
+            </p>
+
+            <select id="maskSelect">
+                <option value="">
+                    Select a skin concern
+                </option>
+            </select>
+
+            <div class="mask-viewer">
+
+                <div class="mask-image">
+                    <img
+                        id="maskImage"
+                        alt="AI skin analysis visualization"
+                        hidden
+                    >
+                </div>
+
+                <p id="maskMessage">
+                    Run a skin analysis to view
+                    available visualization images.
+                </p>
+
+            </div>
+
+            <small>
+                Images are provided by YouCam AI.
+                Visualization links may expire.
+            </small>
+
+        </section>
+
+
+        <!-- SKINCARE SUGGESTIONS -->
+        <section class="panel tips reveal">
+
+            <div class="eyebrow" id="dailyCareNumber">
+                04 / DAILY CARE
+            </div>
+
+            <h2>Personalized Skincare Suggestions</h2>
+
+            <p id="advice"></p>
+
+            <small>
+                General cosmetic guidance only.
+                Not a medical diagnosis.
+            </small>
+
+        </section>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <span>
+            MedicalSkin AI · Powered by YouCam
+        </span>
+
+        <span>
+            Cosmetic skin assessment only.
+            Not for medical diagnosis.
+        </span>
+
+    </footer>
+
+</main>
+
+<script src="{{ url_for('static', filename='script.js', v='4') }}"></script>
+
+</body>
+</html>

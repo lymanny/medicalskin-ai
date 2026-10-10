@@ -43,7 +43,7 @@ const revealObserver = new IntersectionObserver(entries => {
             revealObserver.unobserve(entry.target);
         }
     }
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+}, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
 
 document
     .querySelectorAll('.reveal')
@@ -56,7 +56,7 @@ if (header) {
     const updateHeader = () =>
         header.classList.toggle('scrolled', window.scrollY > 8);
 
-    window.addEventListener('scroll', updateHeader, { passive: true });
+    window.addEventListener('scroll', updateHeader, {passive: true});
     updateHeader();
 }
 
@@ -629,7 +629,7 @@ function react(element, className) {
     element.addEventListener(
         'animationend',
         () => element.classList.remove(className),
-        { once: true }
+        {once: true}
     );
 }
 
@@ -728,7 +728,7 @@ const navObserver = new IntersectionObserver(entries => {
             )
         );
     }
-}, { rootMargin: '-45% 0px -50% 0px' });
+}, {rootMargin: '-45% 0px -50% 0px'});
 
 ['analyze', 'results', 'visualization']
     .map(id => $(id))

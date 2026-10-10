@@ -1,6 +1,7 @@
 """Run with: python app.py"""
 
 import os
+import random
 from io import BytesIO
 from pathlib import Path
 
@@ -10,7 +11,6 @@ from PIL import Image, UnidentifiedImageError
 
 from skin_api import analyze, normalize, SkinAPIError
 from request_logger import log_request, log_response, log_error, logger
-
 
 # ======================================
 # 1. LOAD API KEY
@@ -37,14 +37,13 @@ logger.info("API key length: %s", len(key))
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 8 * 1024 * 1024
 
-
 # ======================================
 # 3. DEMO DATA
 # ======================================
 
 DEMO = {
     "overall": 83.6,
-    "skin_age": 28,
+    "skin_age": 20,
     "skin_type": "Oily",
     "scores": [
         {"type": "acne", "score": 88},
@@ -89,10 +88,16 @@ def analyze_route():
 
     # Demo mode
     if request.form.get("demo") == "1":
+        demo_data = DEMO.copy()
+        demo_data["skin_age"] = random.randint(20, 28)
+
+        print("Random demo age:", demo_data["skin_age"])
+
         response_data = {
             "demo": True,
-            **DEMO,
+            **demo_data,
         }
+
         return json_result(response_data, 200)
 
     # Check uploaded image
